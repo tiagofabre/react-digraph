@@ -699,7 +699,14 @@ class GraphView extends Component {
 
     d3Node.selectAll("text").remove();
 
-    let typeText = this.props.nodeTypes[d.type].typeText;
+    let typeText = "None"
+    
+    if(!!this.props.nodeTypes[d.type]) {
+      typeText = this.props.nodeTypes[d.type].typeText;
+    } else {
+      typeText = this.props.edgeTypes[d.type].typeText;
+    }
+
     let style = this.getTextStyle(d, this.props.selected);
 
     let el = d3Node.append('text')
@@ -900,7 +907,7 @@ GraphView.propTypes = {
 
 GraphView.defaultProps = {
   readOnly: false,
-  maxTitleChars: 9,
+  maxTitleChars: 20,
   transitionTime: 150,
   primary: 'dodgerblue',
   light: '#FFF',
@@ -934,6 +941,16 @@ GraphView.defaultProps = {
         .attr("width", graphView.props.edgeHandleSize)
         .attr("height", graphView.props.edgeHandleSize)
         .attr("transform", trans);
+    
+    d3.select(domNode).attr('transform', graphView.getNodeTransformation);
+
+    graphView.renderNodeText(datum, domNode);
+
+    d3.select(domNode)
+    .attr("style", style)
+    .select("text")
+      .attr("xlink:href", function(d){ return graphView.props.edgeTypes[d.type].shapeId })
+      .attr("transform", trans);
 
     d3.select(domNode)
       .select('path')

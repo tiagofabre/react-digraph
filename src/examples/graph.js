@@ -85,12 +85,14 @@ const sample = {
     {
       "source": 1,
       "target": 2,
-      "type": SPECIAL_EDGE_TYPE
+      "type": SPECIAL_EDGE_TYPE,
+      
     },
     {
       "source": 2,
       "target": 4,
-      "type": EMPTY_EDGE_TYPE
+      "type": EMPTY_EDGE_TYPE,
+      "title": "Edge title test"
     }
   ]
 }

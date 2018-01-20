@@ -74,10 +74,12 @@ export default {
   }, 
   EdgeTypes: {
     emptyEdge: {
+      typeText: "None",
       shapeId: "#emptyEdge",
       shape: EmptyEdgeShape
     },
     specialEdge: {
+      typeText: "Special",
       shapeId: "#specialEdge",
       shape: SpecialEdgeShape
     }
