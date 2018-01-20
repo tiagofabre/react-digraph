@@ -818,6 +818,9 @@ class GraphView extends Component {
 
     const entities = d3.select(this.entities);
 
+    nodes = nodes.filter(e => e.layer === 1)
+    edges = edges.filter(e => e.layer === 1)
+
     this.renderNodes(entities, nodes);
     this.renderEdges(entities, edges);
   }
