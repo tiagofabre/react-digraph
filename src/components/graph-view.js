@@ -935,16 +935,18 @@ GraphView.defaultProps = {
     let style = graphView.getEdgeStyle(datum, graphView.props.selected);
     let trans = graphView.getEdgeHandleTransformation(datum)
     d3.select(domNode)
-      .attr("style", style)
-      .select("use")
-        .attr("xlink:href", function(d){ return graphView.props.edgeTypes[d.type].shapeId })
-        .attr("width", graphView.props.edgeHandleSize)
-        .attr("height", graphView.props.edgeHandleSize)
-        .attr("transform", trans);
-    
-    d3.select(domNode).attr('transform', graphView.getNodeTransformation);
+    .attr("style", style)
+    .select("use")
+      .attr("xlink:href", function(d){ return graphView.props.edgeTypes[d.type].shapeId })
+      .attr("width", graphView.props.edgeHandleSize)
+      .attr("height", graphView.props.edgeHandleSize)
+      .attr("transform", trans);
 
+    
     graphView.renderNodeText(datum, domNode);
+    
+    d3.select(domNode).select("text")
+      .attr("transform", trans);
 
     d3.select(domNode)
     .attr("style", style)
